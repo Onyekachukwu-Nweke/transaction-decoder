@@ -1,7 +1,7 @@
 #[allow(unused)]
 fn read_version(transaction_hex: &str) -> u32 {
     let tx_bytes = hex::decode(transaction_hex).unwrap();
-    let version_bytes = <[u8; 4]>::try_from(&tx_bytes[0..4]).unwrap();
+    let version_bytes: [u8; 4] = (&tx_bytes[0..4]).try_into().unwrap();
     u32::from_le_bytes(version_bytes)
 }
 
